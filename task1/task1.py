@@ -1,8 +1,7 @@
 from pathlib import Path
 
-def total_salary():
-    current_dir = Path(__file__).parent
-    file_path = current_dir / 'salary_file.txt'
+def total_salary(path):
+    file_path = Path(path)
 
     try:
         with file_path.open('r', encoding='utf-8') as file:
@@ -35,5 +34,8 @@ def total_salary():
         print(f"Сталася помилка: {e}")
         return (0, 0)
 
-total, average = total_salary()
-print(f"Загальна сума заробітної плати: {total}, Середня заробітна плата: {average}")
+if __name__ == "__main__":
+    from pathlib import Path
+    path = Path(__file__).parent / 'salary_file.txt'
+    total, average = total_salary(path)
+    print(f"Загальна сума заробітної плати: {total}, Середня заробітна плата: {average}")

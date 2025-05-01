@@ -1,10 +1,8 @@
 from pathlib import Path
 
-def get_cats_info():
+def get_cats_info(path):
     try:
-        current_dir = Path(__file__).parent
-        file_path = current_dir / 'cats_file.txt'
-        
+        file_path = Path(path)
         cats = []
 
         with file_path.open('r', encoding='utf-8') as file:
@@ -32,5 +30,8 @@ def get_cats_info():
         print(f"Сталася помилка: {e}")
         return []
 
-cats_info = get_cats_info()
-print(cats_info)
+if __name__ == "__main__":
+    path = Path(__file__).parent / 'cats_file.txt'
+    cats_info = get_cats_info(path)
+    cats_str = "[\n" + ",\n".join(str(cat) for cat in cats_info) + "\n]"
+    print(cats_str)
